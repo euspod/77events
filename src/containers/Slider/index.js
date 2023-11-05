@@ -12,7 +12,7 @@ const Slider = () => {
   );
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
+      () => setIndex((index + 1) % byDateDesc.length),
       5000
     );
   };
@@ -34,7 +34,9 @@ const Slider = () => {
               <div className="SlideCard__description">
                 <h3>{event.title}</h3>
                 <p>{event.description}</p>
-                <div>{getMonth(new Date(event.date))}</div>
+                <div>
+                  {getMonth(new Date(event.date))}
+                </div>
               </div>
             </div>
           </div>
@@ -45,9 +47,10 @@ const Slider = () => {
                   key={`${event.id}`}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
-                />
-              ))}
+                  checked={index === radioIdx}
+                  />
+                  ))}
+                  
             </div>
           </div>
         </>
